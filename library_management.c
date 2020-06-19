@@ -3,6 +3,26 @@
 #include <string.h>
 #include <math.h>
 #include <stdlib.h>
+struct user{
+    /*A user has an id, username, passowrd, cart of 5 books maximum, notifcations of 5 notifs max*/
+    int id;
+    char username[25];
+    char password[25];
+    int cartsize;
+    int notifsize;
+    char notifs[10][100];
+    char cart[5][100];
+};
+struct book{
+    int bookid;
+    char bookname[50];
+    char bookauthor[50];
+    int heldby;
+    int requestedby;
+    int duedate;
+};
+int librarysize=0;
+int membersize=0;
 void librarian(){
     /*a function to display the choice after validating login for a librarian*/
 }
