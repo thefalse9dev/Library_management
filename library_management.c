@@ -86,10 +86,16 @@ void inventory(){
 void member(){
     /*a function to display the choices for a member after verifying member login*/
 }
+void member(){
+    /*contains the welcome page for the member login and the required functions*/
+}
+void librarian(){
+    /*contains the welcome page for the librarian login and the required functions*/
+}
 void welcome(){
-    /* the function which creates a screen and provides option to log in*/
+    /* The function which creates a screen and provides option to log in. */
+    int ch;
     do{
-        int ch;
         printf("Type 1 to login as member");
         printf("Type 2 to login as librarian");
         printf("Type 3 to login as exit");
