@@ -88,17 +88,19 @@ void member(){
 }
 void welcome(){
     /* the function which creates a screen and provides option to log in*/
-    int ch;
-    printf("Type 1 to login as member");
-    printf("Type 2 to login as librarian");
-    scanf("%d",&ch);
-    if(ch!=1 || ch!=2)
-        printf("invalid choice");
-    else if(ch==1)
-        member();
-    else
-        librarian();
-    
+    do{
+        int ch;
+        printf("Type 1 to login as member");
+        printf("Type 2 to login as librarian");
+        printf("Type 3 to login as exit");
+        scanf("%d",&ch);
+        if(ch!=1 || ch!=2)
+            printf("invalid choice");
+        else if(ch==1)
+             member();
+        else if(ch==2)
+            librarian();
+    }while(ch!=3);
     
 }
 int main(){
