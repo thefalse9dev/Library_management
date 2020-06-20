@@ -52,8 +52,8 @@ void search(int id){
         if(strcmp(title,library[i].bookname) == 0){
             flag++;
             printf("Book ID : &d \n",library[i].bookid);
-            printf("Title : &c \n",library[i].bookname);
-            printf("Author : &c \n",library[i].bookauthor);
+            printf("Title : &s \n",library[i].bookname);
+            printf("Author : &s \n",library[i].bookauthor);
             printf("issue number : &d \n",library[i].issue);
         }
     }
