@@ -18,17 +18,7 @@ void search_title(int);
 void search_id(int);
 void reserve_book(int);
 void welcome();
-struct user{
-    /*A user has an id, username, passowrd, cart of 5 books maximum
-    , notifcations of 5 notifs max*/
-    int id;
-    char username[25];
-    char password[25];
-    int cartsize;
-    int notifsize;
-    char notifs[10][100];
-    char cart[5][100];
-};
+
 struct book{
     /*A book has an uniqueid, book_name, author, issue_no, id of the person holding it,
      id of the person who has requested it and its due date to be returned back*/
@@ -39,6 +29,17 @@ struct book{
     int heldby;
     int requestedby;
     int duedate;
+};
+struct user{
+    /*A user has an id, username, passowrd, cart of 5 books maximum
+    , notifcations of 5 notifs max*/
+    int id;
+    char username[25];
+    char password[25];
+    int cartsize;
+    int notifsize;
+    char notifs[10][100];
+    struct book cart_book[5];
 };
 struct book library[1000];
 struct user members[1000];
@@ -151,11 +152,46 @@ void search(int id){
     library has the book, its held by will be set to user_id and due_date will be 
     generated, will be added to his cart at cart[cartsize] and cartsize++, librarysize -- */
     int bkid=0;
-    printf("Please enter the ID of the book, you want to check out");
+    int userid = id;
+    int exit=0;
+    printf("Please enter the ID of the book, you want to check out : ");
     scanf("%d",&bkid);
-
-
-
+    int flag=0;
+    int size = librarysize+removesize;
+    int loc =0;
+    /*This loop serves the purpose of getting the location of the given book and to change the flag value to 1 if the book is present
+    flag remains 0 if the book is not present*/
+    for(int i =0;i<size;i++){
+        if(library[i].bookid==bkid){
+            flag=1;
+            loc=i;
+            break;
+        }
+    }  
+    /*This loops is used to check if the users' cart has the book already and to prevent duplicates*/
+    int flag1=0; 
+    for(int i =0;i<members[userid].cartsize;i++){
+        if(members[userid].cart_book[i].bookid==library[loc].bookid){
+            flag1=1;
+        }
+    } 
+    if(flag==0&&flag1==0){
+        printf("Book not present, make sure you enter the correct book ID\n");
+        exit=1;
+    }
+    else if(flag==1&&flag1==0){
+        printf("Book present, you have already borrowed %d books and can hold only 5 book at any given time.\n",members[userid].cartsize);
+        library[loc].heldby = userid;
+        members[userid].cart_book[members[userid].cartsize]=library[loc];
+        librarysize--;   
+        members[userid].cartsize++;
+    }
+    else if(members[userid].cartsize==5){
+        printf("You cannot borrow more than 5 books at once, please return a book to borrow this books\n");
+    }
+    else{
+        printf("You seem to have the same book in your cart, please return the book to borrow it again\n");
+    }
 }
   void reserve_book(int id){
     /*A new field will be created in the library with 
@@ -209,6 +245,6 @@ void welcome(){
     
 }
 int main(){
-    search(2);
+    checkout(2);
     return 0;
 }
