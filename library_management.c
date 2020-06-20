@@ -13,7 +13,11 @@
 #include <math.h>
 #include <stdlib.h>
 void search(int);
+void search_author(int);
+void search_title(int);
+void search_id(int);
 void reserve_book(int);
+void welcome();
 struct user{
     /*A user has an id, username, passowrd, cart of 5 books maximum
     , notifcations of 5 notifs max*/
@@ -39,15 +43,16 @@ struct book{
 struct book library[1000];
 struct user members[1000];
 int librarysize=0;
+int removesize=0;
 int membersize=0;
 int b_id=1;
-void search(int id){
-    /*Search for a particular title*/
-    int userid =id;
+void search_title(int id){
     char title[50];
-    int flag=0;
+    int userid = id;
+    int flag =0;
+    int r_ch;
     printf("Enter the book title to be searched : \n");
-    scanf("%[^\n]%*c", title);
+    scanf(" %[^\n]%*c", title);
     for(int i=0;i<librarysize;i++){
         if(strcmp(title,library[i].bookname) == 0){
             flag++;
@@ -57,15 +62,86 @@ void search(int id){
             printf("issue number : &d \n",library[i].issue);
         }
     }
-    int ch;
     if(flag==0){
         printf("Sorry the book is unavailable, would you like to place an order for the same \n");
         printf("Enter 1 to place an order \n");
-        scanf("%d",&ch);
-        if(ch==1)
+        scanf("%d",&r_ch);
+        if(r_ch==1)
             reserve_book(userid);
     }
+}
+void search_author(int id){
+    char author[50];
+    int userid = id;
+    int flag=0;
+    int r_ch;
+    printf("Enter the author name to be view all the books written by them : \n");
+    scanf(" %[^\n]%*c", author);
+    for(int i=0;i<librarysize;i++){
+        if(strcmp(author,library[i].bookauthor) == 0){
+            flag++;
+            printf("Book ID : &d \n",library[i].bookid);
+            printf("Title : &s \n",library[i].bookname);
+            printf("Author : &s \n",library[i].bookauthor);
+            printf("issue number : &d \n",library[i].issue);
+        }
+    }
+    if(flag==0){
+        printf("Sorry the book is unavailable, would you like to place an order for the same \n");
+        printf("Enter 1 to place an order \n");
+        scanf("%d",&r_ch);
+        if(r_ch==1)
+            reserve_book(userid);
+    }
+}
+void search_id(int id){
+    int userid =id;
+    int bkid;
+    int flag=0;
+    int r_ch;
+    printf("Enter the book id to be searched : \n");
+    scanf("%d", &bkid);
+    for(int i=0;i<librarysize;i++){
+        if(bkid==library[i].bookid){
+            flag++;
+            printf("Book ID : &d \n",library[i].bookid);
+            printf("Title : &s \n",library[i].bookname);
+            printf("Author : &s \n",library[i].bookauthor);
+            printf("issue number : &d \n",library[i].issue);
+        }
+    }
+    if(flag==0){
+        printf("Sorry the book id %d is unavailable, would you like to place an order for the same \n",bkid);
+        printf("Enter 1 to place an order \n");
+        scanf("%d",&r_ch);
+        if(r_ch==1)
+            reserve_book(userid);
+    }
+}
+void search(int id){
+    int userid = id;
+    int ch =0;
+    do{
+    printf("Enter 1 to search for book by Title\n");
+    printf("Enter 2 to search for book by Author\n");
+    printf("Enter 3 to search for book by Book ID\n");
+    printf("Enter 0 to exit for book by title\n");
+    scanf("%d",&ch);
+        switch(ch){
+        case 0: return;
+        case 1: search_title(userid);
+                break;
+        case 2: search_author(userid);     
+                break;
+        case 3: search_id(userid);
+                break;
+        default : printf("Wrong Choice!, try again");                
+    }
+    }while(ch!=0);
+    /*Search for a particular title*/
+    
     /*Search for a particular book_id*/
+    
     /*Search for by title and author*/
     
 }
@@ -129,6 +205,5 @@ void welcome(){
 }
 int main(){
     search(2);
-    welcome();
     return 0;
 }
