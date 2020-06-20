@@ -41,6 +41,9 @@ int membersize=0;
 int b_id=1;
 void search(){
     /*Search for a particular title*/
+    char title[50];
+    printf("Enter the book title to be searched : ");
+    scanf("%[^\n]%*c", title);
     /*Search for a particular book_id*/
     /*Search for by title and author*/
 }
@@ -66,10 +69,7 @@ void add_book(){
     /*A librarian only function to add books to the library at librarysize abd librarysize ++*/
 }
 void delete_user(){
-    /*a librian only function to remove an user and shift all other users up and usersize--
-}
-void delete_book(){
-
+    /*a librian only function to remove an user and shift all other users up and usersize--*/
 }
 void librarian(){
     /*a function to display the choice after validating login for a librarian*/
@@ -81,16 +81,10 @@ void password_change(){
     /*if login is validated user can reset his/her password*/
 }
 void inventory(){
-    /*a functions that provides data such as number of books, users etc etc
-}
-void member(){
-    /*a function to display the choices for a member after verifying member login*/
+    /*a functions that provides data such as number of books, users etc etc*/
 }
 void member(){
     /*contains the welcome page for the member login and the required functions*/
-}
-void librarian(){
-    /*contains the welcome page for the librarian login and the required functions*/
 }
 void welcome(){
     /* The function which creates a screen and provides option to log in. */
@@ -110,5 +104,7 @@ void welcome(){
     
 }
 int main(){
+    void search();
     void welcome();
+    return 0;
 }
