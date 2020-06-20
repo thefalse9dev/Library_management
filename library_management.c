@@ -146,11 +146,16 @@ void search(int id){
     
 }
  void checkout(int id){
-
     /* After searching the user will be asked to enter the id of the book he wants
     to checkout, if the user doesn't have a book of the same title in his cart and
     library has the book, its held by will be set to user_id and due_date will be 
     generated, will be added to his cart at cart[cartsize] and cartsize++, librarysize -- */
+    int bkid=0;
+    printf("Please enter the ID of the book, you want to check out");
+    scanf("%d",&bkid);
+
+
+
 }
   void reserve_book(int id){
     /*A new field will be created in the library with 
