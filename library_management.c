@@ -129,6 +129,6 @@ void welcome(){
 }
 int main(){
     search(2);
-     welcome();
+    welcome();
     return 0;
 }
