@@ -193,17 +193,34 @@ void search(int id){
         printf("You seem to have the same book in your cart, please return the book to borrow it again\n");
     }
 }
-  void reserve_book(int id){
-    /*A new field will be created in the library with 
+void reserve_book(int id){
+    /* A new field will be created in the library with 
     requested_by = user_id,bookname =title[],bookauthor=author[]
     bookid = b_id, b_id++*/
-    
+    char t[50];
+    char a[50];
+    int iss;
+    printf("Enter the Title of the book");
+    scanf(" %[^\n]%*c", t);
+    printf("Enter the Author's name");
+    scanf(" %[^\n]%*c", a);
+    printf(" Enter the issue number");
+    scanf("%d", &iss);
+    int size = librarysize+removesize;
+    /* Updating the Library */
+    library[size].bookid = b_id;
+    b_id++;
+    strcpy(library[size].bookname,t);
+    strcpy(library[size].bookauthor,a);
+    library[size].heldby = -1;
+    library[size].issue = iss;
+    library[size].requestedby = id;
 }
 void delete_reservation(int id){
-    /* shift all the books after the book id position to delete the reservation if held_by =-1*/
+    /* shift all the books after the book id position to delete the reservation if held_by =-1 */
 }
 void add_user(){
-    /*A librarian only function to add new users to the list at membersize and memebersize++*/
+    /* A librarian only function to add new users to the list at membersize and memebersize++ */
 }
 void add_book(){
     /*A librarian only function to add books to the library at librarysize abd librarysize ++*/
