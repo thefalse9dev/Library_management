@@ -42,10 +42,11 @@ int b_id=1;
 void search(){
     /*Search for a particular title*/
     char title[50];
-    printf("Enter the book title to be searched : ");
+    printf("Enter the book title to be searched : \n");
     scanf("%[^\n]%*c", title);
     /*Search for a particular book_id*/
     /*Search for by title and author*/
+    
 }
 void checkout(int id){
 
@@ -88,23 +89,25 @@ void member(){
 }
 void welcome(){
     /* The function which creates a screen and provides option to log in. */
+    printf("hello!\n");
     int ch;
     do{
-        printf("Type 1 to login as member");
-        printf("Type 2 to login as librarian");
-        printf("Type 3 to login as exit");
+        printf("Type 1 to login as member \n");
+        printf("Type 2 to login as librarian \n");
+        printf("Type 3 to  exit\n");
         scanf("%d",&ch);
-        if(ch!=1 || ch!=2)
-            printf("invalid choice");
-        else if(ch==1)
+        if(ch==1)
              member();
         else if(ch==2)
             librarian();
+        else if(ch!=3)
+            printf("invalid choice!");
     }while(ch!=3);
     
 }
 int main(){
-    void search();
-    void welcome();
+    
+     search();
+     welcome();
     return 0;
 }
