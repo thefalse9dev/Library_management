@@ -47,6 +47,7 @@ int librarysize=0;
 int removesize=0;
 int membersize=0;
 int b_id=1;
+int m_id=1;
 void search_title(int id){
     char title[50];
     int userid = id;
@@ -215,12 +216,56 @@ void reserve_book(int id){
     library[size].heldby = -1;
     library[size].issue = iss;
     library[size].requestedby = id;
+    printf("The reservation id is %d, it will be the book id once the book is available",library[size].bookid);
+    printf("This id will be required to cancel reservations");
 }
 void delete_reservation(int id){
+    
     /* shift all the books after the book id position to delete the reservation if held_by =-1 */
-}
+    int r_id;
+    printf("Enter the reservation ID of the reservation that you want to cancel");
+    scanf("%d",&r_id);
+    int size = librarysize+removesize;
+    int flag=0;
+    for(int i =0;i<size;i++){
+        if(library[i].bookid==r_id&&library[i].requestedby==id){
+            strcpy(library[i].bookname,"");
+            strcpy(library[i].bookauthor,"");
+            library[i].heldby=-1;
+            library[i].requestedby=-1;
+            flag=1;
+            break;
+        }
+    if(flag==0){
+        printf("No such reservation placed with the library!");
+    }    
+    else{
+        printf("Reservations succesfully cancelled!");
+    }
+    }
+ }
 void add_user(){
     /* A librarian only function to add new users to the list at membersize and memebersize++ */
+    int loc = membersize;
+    char name[50];
+    printf("Enter the Username");
+    scanf(" %[^\n]%*c", name);
+    members[membersize].id=m_id;
+    strcpy(members[membersize].username,name);
+    strcpy(members[membersize].password,toupper(name));
+    /*The deafault password is username in upper case, the member is advised to change his/her password after login*/
+    members[membersize].cartsize=0;
+    members[membersize].notifsize=0;
+    for(int i =0;i<5;i++){
+        strcpy(members[membersize].cart_book[i].bookauthor,"");
+        strcpy(members[membersize].cart_book[i].bookname,"");
+        members[membersize].cart_book[i].bookid=0;
+        members[membersize].cart_book[i].issue=0;
+        members[membersize].cart_book[i].heldby=-1;
+        members[membersize].cart_book[i].requestedby=0;
+        members[membersize].cart_book[i].bookid=0;
+        strcpy(members[membersize].notifs[i],"");
+    }
 }
 void add_book(){
     /*A librarian only function to add books to the library at librarysize abd librarysize ++*/
