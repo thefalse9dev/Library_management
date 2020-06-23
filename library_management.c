@@ -18,7 +18,8 @@ void search_title(int);
 void search_id(int);
 void reserve_book(int);
 void welcome();
-
+void return_book(int);
+void get_book(int);
 struct book{
     /*A book has an uniqueid, book_name, author, issue_no, id of the person holding it,
      id of the person who has requested it and its due date to be returned back*/
@@ -266,6 +267,18 @@ void add_user(){
         members[membersize].cart_book[i].bookid=0;
         strcpy(members[membersize].notifs[i],"");
     }
+    membersize++;
+}
+void return_book(int id){
+    /*if user has book in his cart only then he can return the book*/
+    int r_id;
+    printf("Enter the ID of the book to be returned");
+    scanf("%d",&r_id);
+    for(int i =0;i<members[id].cartsize;i++){
+        if (members[id].cart_book[i].bookid==r_id){
+
+        }
+    }
 }
 void add_book(){
     /*A librarian only function to add books to the library at librarysize abd librarysize ++*/
@@ -284,6 +297,28 @@ void password_change(){
 }
 void inventory(){
     /*a functions that provides data such as number of books, users etc etc*/
+     /*a functions that provides data such as number of books, users etc etc*/
+    //add another variable to see the no. of books in library & no. of books issued
+    int opt;
+    do{
+        printf("Enter 1 to see the number of books\n");
+        printf("Enter 2 to see the number of active users\n");
+        printf("Enter 3 to return to the previous screen\n");
+        scanf("%d",&opt);
+        if(opt==1)
+        {
+            printf("Number of BOOKS : %d",librarysize);
+        }
+        else if(opt==2)
+        {
+            printf("Number of Active Users : %d",membersize);
+        }
+        else if(opt==3)
+        {
+            break;
+        }
+    }while(opt!=3);
+
 }
 void member(){
     /*contains the welcome page for the member login and the required functions*/
@@ -307,6 +342,6 @@ void welcome(){
     
 }
 int main(){
-    checkout(2);
+    
     return 0;
 }
